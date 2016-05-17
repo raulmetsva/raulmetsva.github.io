@@ -1,0 +1,74 @@
+/* General */
+
+body {
+  position: relative;
+}
+section {
+  height: 650px;
+}
+
+/* Fonts */
+
+@font-face {
+    font-family: Moderne Sans;
+    src: url(modernesans.ttf);
+}
+
+
+/* Navigation */
+
+.nav {
+  float: right;
+}
+
+/* About section*/
+
+#about {
+  background-color: #696969;
+  background-image: url(close.jpg);
+  background-position: 0 -200px;
+}
+#intro {
+	position: absolute;
+	top: 400px;
+	left: 350px;
+	color: #FFFFFF;
+	font-family: "Moderne Sans", Lato, "Open Sans";
+	text-transform: uppercase;
+	width: 450px;
+}
+h1 {
+	font-size: 50px;
+}
+
+/* Work section */
+
+.work-header {
+	margin-top: 70px;
+}
+#work {
+  background-color: #778899;
+}
+img {
+	max-width: 100%;
+	height: auto;
+	margin-top: 100px;
+}
+
+/* Contact section */
+
+#contact {
+  background-image: url(footer.jpg);
+  background-position: -300px -60px;
+}
+
+#links {
+	position: absolute;
+	left: 70px;
+}
+
+#links img {
+	width: 50px;
+	display: block;
+	margin-bottom: -80px;
+}
