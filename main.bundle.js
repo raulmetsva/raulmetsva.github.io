@@ -277,7 +277,7 @@ var WeatherComponent = (function () {
         this.currentCity.currentDate = new Date(utc + (3600000 * offset));
         this.currentCity.currentTemperature = Math.round(JSON.parse(localStorage.getItem('weather')).main.temp);
         this.currentCity.currentWeather = JSON.parse(localStorage.getItem('weather')).weather[0].description;
-        this.currentCity.iconPath = __WEBPACK_IMPORTED_MODULE_3__config_svgMapping__["a" /* svgMapping */][JSON.parse(localStorage.getItem('weather')).weather[0].main] + '.svg'; //'assets/svg/' + 
+        this.currentCity.iconPath = 'assets/svg/' + __WEBPACK_IMPORTED_MODULE_3__config_svgMapping__["a" /* svgMapping */][JSON.parse(localStorage.getItem('weather')).weather[0].main] + '.svg';
         this.getForecastsForDay();
         this.getForecastForWeek();
     };
@@ -404,7 +404,6 @@ var _a, _b;
 var config = {
     apiUrl: 'https://api.openweathermap.org/data/2.5/',
     apiKey: 'e7cb6d3c3a5c4e0732f26c80f95d4dff',
-    corsFix: 'https://cors-anywhere.herokuapp.com/',
     GoogleApiUrl: 'https://maps.googleapis.com/maps/api/timezone/json',
     GoogleApiKey: 'AIzaSyBv9jRhZvdBuJXLPmLs6Hf2aBXe4RpyOv0'
 };
@@ -424,7 +423,8 @@ var svgMapping = {
     'Thunderstorm': 'wi-storm-showers',
     'Clear': 'wi-day-sunny',
     'Clouds': 'wi-cloud',
-    'Drizzle': 'wi-rain'
+    'Drizzle': 'wi-rain',
+    'Haze': 'wi-day-haze'
 };
 //# sourceMappingURL=svgMapping.js.map
 
@@ -518,7 +518,7 @@ module.exports = "<section class=\"c-select\">\n    <form class=\"c-select__form
 /***/ 166:
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"c-weather\">\n  <header class=\"c-weather__header\">\n    <i [routerLink]=\"['/']\" class=\"material-icons c-weather__arrow\">arrow_back</i>\n    <h1 class=\"c-weather__city\">{{ currentCity.name }}</h1>\n    <div class=\"c-weather__toggle\">\n      <label class=\"c-weather__label\">\n        <input [(ngModel)]=\"isFahrenheit\" type=\"checkbox\">\n        <span class=\"c-weather__slider\"></span>\n      </label>\n    </div>\n  </header>\n  <section class=\"c-weather__main\">\n    <div class=\"headings\">\n      <h2>{{ currentCity.currentDate.toLocaleDateString(\"en-US\", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'\n        }) }}</h2>\n      <h3>{{ currentCity.currentWeather }}</h3>\n    </div>\n    <div class=\"currentWeather\">\n      <div *ngIf=\"!isFahrenheit\" class=\"c-weather__currentTemp\">\n        {{ currentCity.currentTemperature }}°C\n      </div>\n      <div *ngIf=\"isFahrenheit\" class=\"c-weather__currentTemp\">\n        {{ currentCity.currentTemperature | convertTemp }}°F\n      </div>\n      <div>\n        <img class=\"c-weather__bigImg\" [src]=\"currentCity.iconPath\">\n      </div>\n    </div>\n    <div class=\"todaysForecast\">\n      <p *ngFor=\"let item of currentCity.forecastForDay\">\n        <span *ngIf=\"!isFahrenheit\">\n          {{ item.timeOfDay }}\n          <span class=\"alignRight\">{{ item.temperature }}°C</span>\n        </span>\n        <span *ngIf=\"isFahrenheit\">\n          {{ item.timeOfDay }}\n          <span class=\"alignRight\">{{ item.temperature | convertTemp }}°F</span>\n        </span>\n      </p>\n    </div>\n  </section>\n  <section class=\"c-weather__forecast\">\n    <div *ngFor=\"let item of currentCity.forecastForWeek\">\n      <div *ngIf=\"!isFahrenheit\">\n        <p>{{ item.dayOfWeek }}</p>\n        <img class=\"c-weather__forecastImg\" src=\"wi-thermometer-exterior.svg\">\n        <p>{{ item.temperature }}°C</p>\n      </div>\n      <div *ngIf=\"isFahrenheit\">\n        <p>{{ item.dayOfWeek }}</p>\n        <img class=\"c-weather__forecastImg\" src=\"wi-thermometer-exterior.svg\">\n        <p>{{ item.temperature |convertTemp }}°F</p>\n      </div>\n    </div>\n  </section>\n</section>\n"
+module.exports = "<section class=\"c-weather\">\n  <header class=\"c-weather__header\">\n    <i [routerLink]=\"['/']\" class=\"material-icons c-weather__arrow\">arrow_back</i>\n    <h1 class=\"c-weather__city\">{{ currentCity.name }}</h1>\n    <div class=\"c-weather__toggle\">\n      <label class=\"c-weather__label\">\n        <input [(ngModel)]=\"isFahrenheit\" type=\"checkbox\">\n        <span class=\"c-weather__slider\"></span>\n      </label>\n    </div>\n  </header>\n  <section class=\"c-weather__main\">\n    <div class=\"headings\">\n      <h2>{{ currentCity.currentDate.toLocaleDateString(\"en-US\", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}) }}</h2>\n      <h3>{{ currentCity.currentWeather }}</h3>\n    </div>\n    <div class=\"currentWeather\">\n      <div *ngIf=\"!isFahrenheit\" class=\"c-weather__currentTemp\">\n        {{ currentCity.currentTemperature }}°C\n      </div>\n      <div *ngIf=\"isFahrenheit\" class=\"c-weather__currentTemp\">\n        {{ currentCity.currentTemperature | convertTemp }}°F\n      </div>\n      <div>\n        <img class=\"c-weather__bigImg\" [src]=\"currentCity.iconPath\">\n      </div>\n    </div>\n    <div class=\"todaysForecast\">\n      <p *ngFor=\"let item of currentCity.forecastForDay\">\n        <span *ngIf=\"!isFahrenheit\">\n          {{ item.timeOfDay }}\n          <span class=\"alignRight\">{{ item.temperature }}°C</span>\n        </span>\n        <span *ngIf=\"isFahrenheit\">\n          {{ item.timeOfDay }}\n          <span class=\"alignRight\">{{ item.temperature | convertTemp }}°F</span>\n        </span>\n      </p>\n    </div>\n  </section>\n  <section class=\"c-weather__forecast\">\n    <div *ngFor=\"let item of currentCity.forecastForWeek\">\n      <div *ngIf=\"!isFahrenheit\">\n        <p>{{ item.dayOfWeek }}</p>\n        <img class=\"c-weather__forecastImg\" src=\"assets/svg/wi-thermometer-exterior.svg\">\n        <p>{{ item.temperature }}°C</p>\n      </div>\n      <div *ngIf=\"isFahrenheit\">\n        <p>{{ item.dayOfWeek }}</p>\n        <img class=\"c-weather__forecastImg\" src=\"assets/svg/wi-thermometer-exterior.svg\">\n        <p>{{ item.temperature |convertTemp }}°F</p>\n      </div>\n    </div>\n  </section>\n</section>\n"
 
 /***/ }),
 
