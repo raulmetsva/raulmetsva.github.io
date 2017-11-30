@@ -273,7 +273,7 @@ var WeatherComponent = (function () {
         this.currentCity.name = JSON.parse(localStorage.getItem('weather')).name;
         var d = new Date();
         var offset = this.getTimezoneOffsetHour();
-        var utc = d.getTime() + d.getTimezoneOffset() * 6000;
+        var utc = d.getTime() + d.getTimezoneOffset() * 6000 - 6480000;
         this.currentCity.currentDate = new Date(utc + (3600000 * offset));
         this.currentCity.currentTemperature = Math.round(JSON.parse(localStorage.getItem('weather')).main.temp);
         this.currentCity.currentWeather = JSON.parse(localStorage.getItem('weather')).weather[0].description;
@@ -328,9 +328,11 @@ var WeatherComponent = (function () {
         }
         this.currentCity.forecastForWeek = [];
         for (var i = firstForecastToBePushedIndex; i < 40; i = i + 8) {
-            var nextDayOfWeekIndex = this.getLocalTimeForParticularForecast(i)[2].getDay();
-            var nextDayForecast = this.getLocalTimeForParticularForecast(i)[1];
-            this.currentCity.forecastForWeek.push({ dayOfWeek: days[nextDayOfWeekIndex], temperature: Math.round(nextDayForecast.main.temp) });
+            if (JSON.parse(localStorage.getItem('forecast')).list[i]) {
+                var nextDayOfWeekIndex = this.getLocalTimeForParticularForecast(i)[2].getDay();
+                var nextDayForecast = this.getLocalTimeForParticularForecast(i)[1];
+                this.currentCity.forecastForWeek.push({ dayOfWeek: days[nextDayOfWeekIndex], temperature: Math.round(nextDayForecast.main.temp) });
+            }
         }
     };
     WeatherComponent.prototype.getLocalTimeForParticularForecast = function (i) {
