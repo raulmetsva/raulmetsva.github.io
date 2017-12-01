@@ -277,7 +277,7 @@ var WeatherComponent = (function () {
         this.currentCity.currentDate = new Date(utc + (3600000 * offset));
         this.currentCity.currentTemperature = Math.round(JSON.parse(localStorage.getItem('weather')).main.temp);
         this.currentCity.currentWeather = JSON.parse(localStorage.getItem('weather')).weather[0].description;
-        this.currentCity.iconPath = __WEBPACK_IMPORTED_MODULE_3__config_svgMapping__["a" /* svgMapping */][JSON.parse(localStorage.getItem('weather')).weather[0].main] + '.svg'; //'assets/svg/' + 
+        this.currentCity.iconPath = __WEBPACK_IMPORTED_MODULE_3__config_svgMapping__["a" /* svgMapping */][JSON.parse(localStorage.getItem('weather')).weather[0].main] + '.svg';
         this.getForecastsForDay();
         this.getForecastForWeek();
     };
@@ -426,7 +426,8 @@ var svgMapping = {
     'Clear': 'wi-day-sunny',
     'Clouds': 'wi-cloud',
     'Drizzle': 'wi-rain',
-    'Haze': 'wi-day-haze'
+    'Haze': 'wi-day-haze',
+    'Fog': 'wi-fog'
 };
 //# sourceMappingURL=svgMapping.js.map
 
